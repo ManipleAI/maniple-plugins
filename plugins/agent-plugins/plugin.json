@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "maniple",
+  "version": "1.0.0",
+  "description": "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.",
+  "author": {
+    "name": "Maniple",
+    "url": "https://maniple.ai"
+  },
+  "homepage": "https://maniple.ai",
+  "repository": "https://github.com/ManipleAI/maniple-plugins",
+  "license": "MIT",
+  "keywords": [
+    "maniple",
+    "governance",
+    "citizen-developer",
+    "mcp"
+  ],
+  "extensions": {
+    "ai.mistral.vibe": {
+      "schemaVersion": 1,
+      "displayName": "Maniple",
+      "defaultEnabled": true
+    }
+  }
+}

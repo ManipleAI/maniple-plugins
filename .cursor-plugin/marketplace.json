@@ -1,0 +1,16 @@
+{
+  "name": "maniple-plugins",
+  "owner": {
+    "name": "Maniple"
+  },
+  "metadata": {
+    "description": "Maniple for Cursor"
+  },
+  "plugins": [
+    {
+      "name": "maniple",
+      "source": "plugins/cursor",
+      "description": "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards."
+    }
+  ]
+}

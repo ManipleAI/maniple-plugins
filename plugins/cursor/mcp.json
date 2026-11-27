@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "maniple": {
+      "type": "http",
+      "url": "${MANIPLE_URL}/mcp"
+    }
+  }
+}

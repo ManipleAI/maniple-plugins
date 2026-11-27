@@ -1,0 +1,16 @@
+{
+  "name": "maniple-plugins",
+  "owner": {
+    "name": "Maniple",
+    "url": "https://maniple.ai"
+  },
+  "description": "Maniple for your coding agent: start and continue your Maniple applications, governed by your organisation's standards.",
+  "plugins": [
+    {
+      "name": "maniple",
+      "source": "./plugins/claude-code",
+      "description": "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.",
+      "version": "1.0.0"
+    }
+  ]
+}

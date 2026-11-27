@@ -1,0 +1,19 @@
+{
+  "name": "maniple",
+  "displayName": "Maniple",
+  "version": "1.0.0",
+  "description": "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.",
+  "author": {
+    "name": "Maniple",
+    "url": "https://maniple.ai"
+  },
+  "homepage": "https://maniple.ai",
+  "repository": "https://github.com/ManipleAI/maniple-plugins",
+  "license": "MIT",
+  "keywords": [
+    "maniple",
+    "governance",
+    "citizen-developer",
+    "mcp"
+  ]
+}
