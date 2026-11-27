@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const VERSION = "1.0.2";
+const VERSION = "1.0.3";
 const DESCRIPTION =
   "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.";
 const AUTHOR = { name: "Maniple", url: "https://maniple.ai" };
@@ -42,14 +42,14 @@ const MISSING = {
   cursor:
     "If there is no MCP server named maniple, my organisation's Cursor admin has not set Maniple's address yet: tell me to ask them to set MANIPLE_URL for the Maniple plugin (Cursor dashboard → Plugins → Configure).",
   connect:
-    "If there is no MCP server named maniple, connect this agent to Maniple first, by following this plugin's `connect` skill, then carry on.",
+    "If there is no MCP server named maniple, connect this agent to Maniple first, by following this plugin's `connect` skill, then carry on. If there is one but none of its tools are available to you, it is waiting for my sign-in: do not run `connect` again, tell me how to sign in (below).",
 };
 
 const SIGN_IN = {
   claude:
     "If Maniple asks you to sign in, tell me how, and only the way that fits where you run (run  echo $CLAUDE_CODE_ENTRYPOINT  to see): in Claude Desktop (claude-desktop), Plugins in the sidebar → Maniple → Connectors → maniple → Connect, then I click Allow in Maniple and type the command again; in a terminal, type /mcp, choose maniple and sign in, then run this again.",
   other:
-    "If Maniple asks you to sign in, tell me to sign in to the MCP server named maniple in this agent's MCP settings. My browser then opens Maniple, I sign in there if asked, and Maniple asks me to allow the agent: I click Allow. Then I ask you again.",
+    "If Maniple asks you to sign in, or its tools are not available yet, tell me to sign in. Sign in with the way that fits the agent you are: Codex, run  codex mcp login maniple ; GitHub Copilot CLI, start  copilot  (not  copilot -p ) and sign in to maniple when it asks, or use  /mcp ; Factory Droid, run  droid mcp auth ; any other agent, sign in to the MCP server named maniple in its MCP settings. My browser then opens Maniple, I sign in there if asked, and Maniple asks me to allow the agent: I click Allow. Then I ask you again.",
 };
 
 function start(kind) {
@@ -117,7 +117,7 @@ argument-hint: "[your Maniple address, for example https://maniple.example.com]"
 
 Connect this coding agent to my organisation's Maniple. Do each step yourself; only ask me for the address.
 
-1. **The address.** Use the one I gave here, if any: $ARGUMENTS. Otherwise ask me for it (for example \`https://maniple.example.com\`); my platform team knows it. Drop any trailing slash and any path. Maniple's MCP server is at \`<address>/mcp\`.
+1. **The address.** If an MCP server named \`maniple\` is already set up in this agent, keep it, do not ask for an address, and go to step 4. Otherwise use the one I gave here, if any: $ARGUMENTS. Otherwise ask me for it (for example \`https://maniple.example.com\`); my platform team knows it. Drop any trailing slash and any path. Maniple's MCP server is at \`<address>/mcp\`.
 2. **Check it is a Maniple.** Run \`curl -s -o /dev/null -w "%{http_code}" -X POST <address>/mcp\`. It must answer \`401\` (Maniple asks for a sign-in). Anything else: tell me the address did not answer as a Maniple, and stop.
 3. **Add the MCP server named \`maniple\`**, with the command for the agent you are:
    - Codex: \`codex mcp add maniple --url <address>/mcp\`, then \`codex mcp login maniple\`.
@@ -128,7 +128,7 @@ Connect this coding agent to my organisation's Maniple. Do each step yourself; o
    - Mistral Vibe: write \`~/.vibe/plugins/maniple/mcp.json\` (or \`$VIBE_HOME/plugins/maniple/mcp.json\`) as \`{"$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json", "mcpServers": {"maniple": {"type": "streamable-http", "url": "<address>/mcp"}}}\`, then tell me to run \`/reload-plugins\`.
    - Any other agent: tell me the address \`<address>/mcp\` and ask me to add it as an HTTP MCP server named maniple in the agent's MCP settings.
    If a server named maniple is already there with another address, tell me both addresses and ask before replacing it.
-4. **Sign in.** Tell me to sign in to the MCP server named maniple: my browser opens my Maniple, I sign in there if asked, and Maniple asks me to allow the agent: I click Allow. Some agents only see a new server in a new session: if you cannot see it, tell me to start one.
+4. **Sign in.** Tell me to sign in to the MCP server named maniple. Sign in with the way that fits the agent you are: Codex, run  codex mcp login maniple ; GitHub Copilot CLI, start  copilot  (not  copilot -p ) and sign in to maniple when it asks, or use  /mcp ; Factory Droid, run  droid mcp auth ; any other agent, sign in to the MCP server named maniple in its MCP settings. My browser opens my Maniple, I sign in there if asked, and Maniple asks me to allow the agent: I click Allow. Some agents only see a new server in a new session: if you cannot see it, tell me to start one.
 5. Then tell me I can say "start" (or use the \`start\` skill) to start or continue a Maniple application in this folder.
 `;
 
