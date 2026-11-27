@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const VERSION = "1.0.0";
+const VERSION = "1.0.1";
 const DESCRIPTION =
   "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.";
 const AUTHOR = { name: "Maniple", url: "https://maniple.ai" };
@@ -256,7 +256,6 @@ out("plugins/agent-plugins/plugin.json", {
   repository: REPOSITORY,
   license: LICENSE,
   keywords: KEYWORDS,
-  extensions: { "ai.mistral.vibe": { schemaVersion: 1, displayName: "Maniple", defaultEnabled: true } },
 });
 skills("plugins/agent-plugins", "connect", true);
 out(

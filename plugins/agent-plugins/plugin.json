@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "maniple",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.",
   "author": {
     "name": "Maniple",
@@ -15,12 +15,5 @@
     "governance",
     "citizen-developer",
     "mcp"
-  ],
-  "extensions": {
-    "ai.mistral.vibe": {
-      "schemaVersion": 1,
-      "displayName": "Maniple",
-      "defaultEnabled": true
-    }
-  }
+  ]
 }
