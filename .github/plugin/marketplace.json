@@ -10,7 +10,7 @@
       "name": "maniple",
       "source": "./plugins/agents",
       "description": "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.",
-      "version": "1.0.8"
+      "version": "1.0.9"
     }
   ]
 }

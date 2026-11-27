@@ -40,6 +40,7 @@ for (const rel of files) {
 
 const need = {
   "plugins/claude-code": [".claude-plugin/plugin.json", "skills/start/SKILL.md", "skills/new/SKILL.md", "skills/doctor/SKILL.md", "LICENSE", "README.md", "assets/icon.png"],
+  "plugins/claude-directory": [".claude-plugin/plugin.json", "skills/connect/SKILL.md", "skills/start/SKILL.md", "LICENSE", "README.md", "assets/icon.png"],
   "plugins/agents": [".claude-plugin/plugin.json", "plugin.json", "skills/connect/SKILL.md", "skills/start/SKILL.md", "LICENSE", "README.md"],
   "plugins/cursor": [".cursor-plugin/plugin.json", "mcp.json", "skills/start/SKILL.md", "LICENSE", "README.md", "assets/icon.png"],
   "plugins/agent-plugins": ["plugin.json", "skills/connect/SKILL.md", "skills/start/SKILL.md", "LICENSE", "README.md"],
