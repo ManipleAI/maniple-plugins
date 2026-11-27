@@ -13,12 +13,14 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const VERSION = "1.0.1";
+const VERSION = "1.0.2";
 const DESCRIPTION =
   "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.";
 const AUTHOR = { name: "Maniple", url: "https://maniple.ai" };
 const HOMEPAGE = "https://maniple.ai";
 const REPOSITORY = "https://github.com/ManipleAI/maniple-plugins";
+const PRIVACY = `${REPOSITORY}/blob/main/PRIVACY.md`;
+const TERMS = `${REPOSITORY}/blob/main/TERMS.md`;
 const KEYWORDS = ["maniple", "governance", "citizen-developer", "mcp"];
 const LICENSE = "MIT";
 
@@ -149,7 +151,7 @@ ${setup}
 
 Your platform team can tell you your Maniple address, for example \`https://maniple.example.com\`.
 
-Privacy: https://maniple.ai/legal/privacy · Terms: https://maniple.ai/legal/terms · Support: ${REPOSITORY}/issues
+Privacy: ${PRIVACY} · Terms: ${TERMS} · Support: ${REPOSITORY}/issues
 `;
 
 // ── The packages ────────────────────────────────────────────────────────────
@@ -168,8 +170,8 @@ out("plugins/claude-code/.claude-plugin/plugin.json", {
   license: LICENSE,
   keywords: KEYWORDS,
   icon: "assets/icon.png",
-  privacyPolicyUrl: "https://maniple.ai/legal/privacy",
-  termsOfServiceUrl: "https://maniple.ai/legal/terms",
+  privacyPolicyUrl: PRIVACY,
+  termsOfServiceUrl: TERMS,
   supportUrl: `${REPOSITORY}/issues`,
   documentationUrl: `${REPOSITORY}#readme`,
   userConfig: {

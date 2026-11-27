@@ -10,4 +10,4 @@ Install the plugin (see the repository's README for your agent), then ask the ag
 
 Your platform team can tell you your Maniple address, for example `https://maniple.example.com`.
 
-Privacy: https://maniple.ai/legal/privacy · Terms: https://maniple.ai/legal/terms · Support: https://github.com/ManipleAI/maniple-plugins/issues
+Privacy: https://github.com/ManipleAI/maniple-plugins/blob/main/PRIVACY.md · Terms: https://github.com/ManipleAI/maniple-plugins/blob/main/TERMS.md · Support: https://github.com/ManipleAI/maniple-plugins/issues

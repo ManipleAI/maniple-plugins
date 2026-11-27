@@ -1,7 +1,7 @@
 {
   "name": "maniple",
   "displayName": "Maniple",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.",
   "author": {
     "name": "Maniple",
@@ -17,8 +17,8 @@
     "mcp"
   ],
   "icon": "assets/icon.png",
-  "privacyPolicyUrl": "https://maniple.ai/legal/privacy",
-  "termsOfServiceUrl": "https://maniple.ai/legal/terms",
+  "privacyPolicyUrl": "https://github.com/ManipleAI/maniple-plugins/blob/main/PRIVACY.md",
+  "termsOfServiceUrl": "https://github.com/ManipleAI/maniple-plugins/blob/main/TERMS.md",
   "supportUrl": "https://github.com/ManipleAI/maniple-plugins/issues",
   "documentationUrl": "https://github.com/ManipleAI/maniple-plugins#readme",
   "userConfig": {

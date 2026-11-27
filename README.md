@@ -50,3 +50,5 @@ built files.
 
 MIT. See [LICENSE](LICENSE). Report security issues as described in
 [SECURITY.md](SECURITY.md).
+
+[Privacy policy](PRIVACY.md) · [Terms of use](TERMS.md) · [Security](SECURITY.md) · [Support](https://github.com/ManipleAI/maniple-plugins/issues)

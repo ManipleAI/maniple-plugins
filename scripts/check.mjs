@@ -47,6 +47,7 @@ const need = {
 for (const [dir, list] of Object.entries(need)) {
   for (const f of list) if (!fs.existsSync(path.join(ROOT, dir, f))) problems.push(`${dir}: missing ${f}`);
 }
+for (const f of ["PRIVACY.md", "TERMS.md", "SECURITY.md", "LICENSE"]) if (!fs.existsSync(path.join(ROOT, f))) problems.push(`${f} missing`);
 for (const m of [".claude-plugin", ".agents/plugins", ".github/plugin", ".factory-plugin", ".cursor-plugin"]) {
   if (!fs.existsSync(path.join(ROOT, m, "marketplace.json"))) problems.push(`${m}/marketplace.json missing`);
 }
