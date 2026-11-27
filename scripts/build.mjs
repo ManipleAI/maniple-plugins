@@ -292,3 +292,14 @@ out(".cursor-plugin/marketplace.json", {
 });
 
 console.log("built", VERSION);
+
+// ── Upload packages (dist/, not committed; attached to a GitHub release) ─────
+// Codex's portal takes a ZIP of a Claude-format plugin with no MCP server and
+// no userConfig: the shared package is exactly that.
+import { execFileSync as run } from "node:child_process";
+fs.mkdirSync(path.join(ROOT, "dist"), { recursive: true });
+const zip = (name, dir) => run("zip", ["-q", "-r", "-X", path.join(ROOT, "dist", name), "."], { cwd: path.join(ROOT, dir) });
+zip(`maniple-codex-${VERSION}.zip`, "plugins/agents");
+zip(`maniple-agent-plugins-${VERSION}.zip`, "plugins/agent-plugins");
+zip(`maniple-claude-code-${VERSION}.zip`, "plugins/claude-code");
+console.log("packages in dist/");
