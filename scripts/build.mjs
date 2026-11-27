@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const VERSION = "1.0.7";
+const VERSION = "1.0.8";
 const DESCRIPTION =
   "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.";
 const AUTHOR = { name: "Maniple", url: "https://maniple.ai" };
@@ -204,6 +204,19 @@ out(
 out("plugins/agents/.claude-plugin/plugin.json", {
   name: "maniple",
   displayName: "Maniple",
+  version: VERSION,
+  description: DESCRIPTION,
+  author: AUTHOR,
+  homepage: HOMEPAGE,
+  repository: REPOSITORY,
+  license: LICENSE,
+  keywords: KEYWORDS,
+});
+// Copilot's marketplace intake (awesome-copilot) looks for plugin.json at the
+// plugin root (Agent Plugins 1.0); Codex and Droid read .claude-plugin/.
+out("plugins/agents/plugin.json", {
+  $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  name: "maniple",
   version: VERSION,
   description: DESCRIPTION,
   author: AUTHOR,
