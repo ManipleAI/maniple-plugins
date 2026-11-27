@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const VERSION = "1.0.6";
+const VERSION = "1.0.7";
 const DESCRIPTION =
   "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.";
 const AUTHOR = { name: "Maniple", url: "https://maniple.ai" };
@@ -150,6 +150,13 @@ It adds the skills \`start\`, \`new\` and \`doctor\`, and connects ${who} to you
 ${setup}
 
 Your platform team can tell you your Maniple address, for example \`https://maniple.example.com\`.
+
+## What the plugin runs and sends
+
+- **Network:** only your organisation's Maniple, at the address you give. The MCP server is \`<address>/mcp\`; sign-in is OAuth with PKCE in your browser, and your coding agent stores the resulting token.
+- **Tools it calls:** Maniple's own MCP tools, for example to list your applications, create one, get its setup link or explain a refusal. Each call acts as you and Maniple applies its own rules to it.
+- **Commands the skills may ask your agent to run:** \`curl\` to check that the address answers like a Maniple (\`connect\`); your agent's own command to add the MCP server and sign in (\`connect\`); \`git remote get-url origin\` to find the application for this folder (\`start\`); and \`maniple doctor\` if the Maniple command is installed (\`doctor\`). Your agent asks before running commands, as its settings say.
+- **Nothing else:** no hooks, no scripts, no telemetry, and nothing sent to the publisher of this plugin. See the privacy policy below.
 
 Privacy: ${PRIVACY} · Terms: ${TERMS} · Support: ${REPOSITORY}/issues
 `;
