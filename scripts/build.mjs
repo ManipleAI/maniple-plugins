@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const VERSION = "1.0.9";
+const VERSION = "1.0.10";
 const DESCRIPTION =
   "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.";
 const AUTHOR = { name: "Maniple", url: "https://maniple.ai" };
@@ -241,6 +241,52 @@ out(
   )
 );
 
+// OpenAI's plugin directory (Codex and ChatGPT): a root plugin.json whose
+// listing lives under extensions["com.openai"], with assets/ beside skills/.
+// Skills only: each company's Maniple has its own address, and OpenAI takes
+// one fixed MCP server per plugin.
+out("plugins/openai/plugin.json", {
+  $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  name: "maniple",
+  version: VERSION,
+  description: DESCRIPTION,
+  author: AUTHOR,
+  homepage: HOMEPAGE,
+  repository: REPOSITORY,
+  license: LICENSE,
+  keywords: KEYWORDS,
+  extensions: {
+    "com.openai": {
+      interface: {
+        displayName: "Maniple",
+        shortDescription: "Governed apps from your agent",
+        longDescription:
+          "Maniple governs the applications people across a company build with AI coding agents: which agents and models they may use, the standards the work must follow, approvals, budgets and going live. " +
+          "These skills let you start and continue your Maniple applications from Codex. Each company runs its own Maniple: the connect skill adds your company's Maniple (codex mcp add, then codex mcp login), " +
+          "and start, new and doctor use its tools. Nothing is sent anywhere but your company's Maniple.",
+        developerName: "Maniple",
+        category: "Productivity",
+        capabilities: ["Connect to your company's Maniple", "Start and continue applications", "Explain refused steps"],
+        websiteURL: HOMEPAGE,
+        supportURL: `${REPOSITORY}/issues`,
+        privacyPolicyURL: PRIVACY,
+        termsOfServiceURL: TERMS,
+        composerIcon: "./assets/logo.svg",
+        logo: "./assets/logo.svg",
+      },
+      onboardingSkill: "./skills/connect/SKILL.md",
+    },
+  },
+});
+skills("plugins/openai", "connect", true);
+out(
+  "plugins/openai/README.md",
+  README(
+    "Codex",
+    "Install Maniple from the plugin directory, or with \`codex plugin marketplace add ManipleAI/maniple-plugins\` then \`codex plugin add maniple@maniple-plugins\`. Then ask Codex to use the Maniple \`connect\` skill with your Maniple address; it adds the server (\`codex mcp add\`) and you sign in with \`codex mcp login maniple\`. Then use \`start\`."
+  )
+);
+
 // Copilot's marketplace intake (awesome-copilot) looks for plugin.json at the
 // plugin root (Agent Plugins 1.0); Codex and Droid read .claude-plugin/.
 out("plugins/agents/plugin.json", {
@@ -321,7 +367,7 @@ for (const dir of ["plugins/claude-code", "plugins/claude-directory", "plugins/c
   fs.mkdirSync(path.join(ROOT, dir, "assets"), { recursive: true });
   fs.copyFileSync(path.join(ROOT, "assets/icon.png"), path.join(ROOT, dir, "assets/icon.png"));
 }
-for (const dir of ["plugins/claude-code", "plugins/claude-directory", "plugins/agents", "plugins/cursor", "plugins/agent-plugins"]) {
+for (const dir of ["plugins/claude-code", "plugins/claude-directory", "plugins/openai", "plugins/agents", "plugins/cursor", "plugins/agent-plugins"]) {
   fs.copyFileSync(path.join(ROOT, "LICENSE"), path.join(ROOT, dir, "LICENSE"));
 }
 
@@ -343,6 +389,9 @@ out(".cursor-plugin/marketplace.json", {
 
 console.log("built", VERSION);
 
+fs.mkdirSync(path.join(ROOT, "plugins/openai/assets"), { recursive: true });
+fs.copyFileSync(path.join(ROOT, "assets/logo.svg"), path.join(ROOT, "plugins/openai/assets/logo.svg"));
+
 // ── Upload packages (dist/, not committed; attached to a GitHub release) ─────
 // Codex's portal takes a ZIP of a Claude-format plugin with no MCP server and
 // no userConfig: the shared package is exactly that.
@@ -350,6 +399,7 @@ import { execFileSync as run } from "node:child_process";
 fs.mkdirSync(path.join(ROOT, "dist"), { recursive: true });
 const zip = (name, dir) => run("zip", ["-q", "-r", "-X", path.join(ROOT, "dist", name), "."], { cwd: path.join(ROOT, dir) });
 zip(`maniple-codex-${VERSION}.zip`, "plugins/agents");
+zip(`maniple-openai-${VERSION}.zip`, "plugins/openai");
 zip(`maniple-agent-plugins-${VERSION}.zip`, "plugins/agent-plugins");
 zip(`maniple-claude-code-${VERSION}.zip`, "plugins/claude-code");
 console.log("packages in dist/");

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "maniple",
+  "version": "1.0.10",
+  "description": "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.",
+  "author": {
+    "name": "Maniple",
+    "url": "https://maniple.ai"
+  },
+  "homepage": "https://maniple.ai",
+  "repository": "https://github.com/ManipleAI/maniple-plugins",
+  "license": "MIT",
+  "keywords": [
+    "maniple",
+    "governance",
+    "citizen-developer",
+    "mcp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Maniple",
+        "shortDescription": "Governed apps from your agent",
+        "longDescription": "Maniple governs the applications people across a company build with AI coding agents: which agents and models they may use, the standards the work must follow, approvals, budgets and going live. These skills let you start and continue your Maniple applications from Codex. Each company runs its own Maniple: the connect skill adds your company's Maniple (codex mcp add, then codex mcp login), and start, new and doctor use its tools. Nothing is sent anywhere but your company's Maniple.",
+        "developerName": "Maniple",
+        "category": "Productivity",
+        "capabilities": [
+          "Connect to your company's Maniple",
+          "Start and continue applications",
+          "Explain refused steps"
+        ],
+        "websiteURL": "https://maniple.ai",
+        "supportURL": "https://github.com/ManipleAI/maniple-plugins/issues",
+        "privacyPolicyURL": "https://github.com/ManipleAI/maniple-plugins/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/ManipleAI/maniple-plugins/blob/main/TERMS.md",
+        "composerIcon": "./assets/logo.svg",
+        "logo": "./assets/logo.svg"
+      },
+      "onboardingSkill": "./skills/connect/SKILL.md"
+    }
+  }
+}
