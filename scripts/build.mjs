@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const VERSION = "1.0.3";
+const VERSION = "1.0.4";
 const DESCRIPTION =
   "Start and continue your Maniple applications from your coding agent, governed by your organisation's standards.";
 const AUTHOR = { name: "Maniple", url: "https://maniple.ai" };
@@ -42,7 +42,7 @@ const MISSING = {
   cursor:
     "If there is no MCP server named maniple, my organisation's Cursor admin has not set Maniple's address yet: tell me to ask them to set MANIPLE_URL for the Maniple plugin (Cursor dashboard → Plugins → Configure).",
   connect:
-    "If there is no MCP server named maniple, connect this agent to Maniple first, by following this plugin's `connect` skill, then carry on. If there is one but none of its tools are available to you, it is waiting for my sign-in: do not run `connect` again, tell me how to sign in (below).",
+    "Check whether a server named maniple is set up, with the agent's own list (Codex  codex mcp list ; Copilot CLI  copilot mcp list ; Droid  droid mcp list ; Kiro  ~/.kiro/settings/mcp.json ; Vibe  ~/.vibe/plugins/maniple/mcp.json ), because a server waiting for sign-in shows no tools. If there is no MCP server named maniple, connect this agent to Maniple first, by following this plugin's `connect` skill, then carry on. If there is one but none of its tools are available to you, it is waiting for my sign-in: do not run `connect` again, tell me how to sign in (below).",
 };
 
 const SIGN_IN = {
@@ -117,7 +117,7 @@ argument-hint: "[your Maniple address, for example https://maniple.example.com]"
 
 Connect this coding agent to my organisation's Maniple. Do each step yourself; only ask me for the address.
 
-1. **The address.** If an MCP server named \`maniple\` is already set up in this agent, keep it, do not ask for an address, and go to step 4. Otherwise use the one I gave here, if any: $ARGUMENTS. Otherwise ask me for it (for example \`https://maniple.example.com\`); my platform team knows it. Drop any trailing slash and any path. Maniple's MCP server is at \`<address>/mcp\`.
+1. **The address.** Check whether a server named maniple is set up, with the agent's own list (Codex  codex mcp list ; Copilot CLI  copilot mcp list ; Droid  droid mcp list ; Kiro  ~/.kiro/settings/mcp.json ; Vibe  ~/.vibe/plugins/maniple/mcp.json ), because a server waiting for sign-in shows no tools. If it is already set up, keep it, do not ask for an address, and go to step 4. Otherwise use the one I gave here, if any: $ARGUMENTS. Otherwise ask me for it (for example \`https://maniple.example.com\`); my platform team knows it. Drop any trailing slash and any path. Maniple's MCP server is at \`<address>/mcp\`.
 2. **Check it is a Maniple.** Run \`curl -s -o /dev/null -w "%{http_code}" -X POST <address>/mcp\`. It must answer \`401\` (Maniple asks for a sign-in). Anything else: tell me the address did not answer as a Maniple, and stop.
 3. **Add the MCP server named \`maniple\`**, with the command for the agent you are:
    - Codex: \`codex mcp add maniple --url <address>/mcp\`, then \`codex mcp login maniple\`.
